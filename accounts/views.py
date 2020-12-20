@@ -24,6 +24,9 @@ def registerPage(request):
             username = form.cleaned_data.get('username')
             group = Group.objects.get(name='customers')
             user.groups.add(group)
+            Customer.objects .create(
+                user=user,
+            )
             messages.success(request, 'account was created for ' + username)
             return redirect('login')
     context = {
@@ -70,9 +73,20 @@ def home(request):
     }
     return render(request, 'accounts/dashboard.html', context)
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customers'])
 def userPage(request):
-    context = {}
+    orders = request.user.customer.order_set.all()
+    total_orders = orders.count()
+    delivered = orders.filter(status="Delivered").count()
+    pending = orders.filter(status="pending").count()
+    print(orders)
+    context = {
+        'orders': orders,
+        'total_orders': total_orders,
+        'delivered_orders': delivered,
+        'pending_orders': pending
+    }
     return render(request, 'accounts/user.html', context)
 
 
