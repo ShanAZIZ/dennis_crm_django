@@ -7,6 +7,7 @@ urlpatterns = [
     path('register/', views.registerPage, name="register"),
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
+    path('settings/', views.accountSetting, name="settings"),
     path('products/', views.products, name="products"),
     path('customer/<str:pk>', views.customer, name="customer"),
     path('create_order/<str:pk>', views.createOrders, name="create_order"),
@@ -14,3 +15,4 @@ urlpatterns = [
     path('delete_order/<str:pk>', views.deleteOrder, name="delete_order"),
 
 ]
+
