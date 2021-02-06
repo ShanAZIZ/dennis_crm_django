@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 
 
 def customer_profile(sender, instance, created, **kwargs):
-    if created :
+    if created:
         group = Group.objects.get(name='customers')
         instance.groups.add(group)
         Customer.objects.create(
