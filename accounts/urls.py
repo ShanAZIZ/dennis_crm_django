@@ -19,6 +19,7 @@ urlpatterns = [
     path('create_order/<str:pk>', views.createOrders, name="create_order"),
     path('update_order/<str:pk>', views.updateOrder, name="update_order"),
     path('delete_order/<str:pk>', views.deleteOrder, name="delete_order"),
+    
     #Templates to implement
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"), name="reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
